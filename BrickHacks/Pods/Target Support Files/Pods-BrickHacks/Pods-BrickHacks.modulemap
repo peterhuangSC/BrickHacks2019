@@ -1,0 +1,6 @@
+framework module Pods_BrickHacks {
+  umbrella header "Pods-BrickHacks-umbrella.h"
+
+  export *
+  module * { export * }
+}

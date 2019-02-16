@@ -8,20 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		362BE1E8221886E300CD5561 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362BE1E7221886E300CD5561 /* AppDelegate.swift */; };
-		362BE1EA221886E300CD5561 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362BE1E9221886E300CD5561 /* ViewController.swift */; };
+		362BE1EA221886E300CD5561 /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362BE1E9221886E300CD5561 /* RecipeViewController.swift */; };
 		362BE1ED221886E300CD5561 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 362BE1EB221886E300CD5561 /* Main.storyboard */; };
 		362BE1EF221886E500CD5561 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 362BE1EE221886E500CD5561 /* Assets.xcassets */; };
 		362BE1F2221886E500CD5561 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 362BE1F0221886E500CD5561 /* LaunchScreen.storyboard */; };
+		362BE1FD2218CC7D00CD5561 /* WegmansDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362BE1FC2218CC7D00CD5561 /* WegmansDataModel.swift */; };
+		42D1D3A91C3DCD822862F2D5 /* Pods_BrickHacks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 446BD8D70A8E0FDC337ECA22 /* Pods_BrickHacks.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		362BE1E4221886E300CD5561 /* BrickHacks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrickHacks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		362BE1E7221886E300CD5561 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		362BE1E9221886E300CD5561 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		362BE1E9221886E300CD5561 /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
 		362BE1EC221886E300CD5561 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		362BE1EE221886E500CD5561 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		362BE1F1221886E500CD5561 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		362BE1F3221886E500CD5561 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		362BE1FC2218CC7D00CD5561 /* WegmansDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WegmansDataModel.swift; sourceTree = "<group>"; };
+		446BD8D70A8E0FDC337ECA22 /* Pods_BrickHacks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BrickHacks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9EB845DA2F98769EE1B2275A /* Pods-BrickHacks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrickHacks.release.xcconfig"; path = "Pods/Target Support Files/Pods-BrickHacks/Pods-BrickHacks.release.xcconfig"; sourceTree = "<group>"; };
+		B7B1E7C8CC77F41934B7EE51 /* Pods-BrickHacks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrickHacks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BrickHacks/Pods-BrickHacks.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42D1D3A91C3DCD822862F2D5 /* Pods_BrickHacks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +47,8 @@
 			children = (
 				362BE1E6221886E300CD5561 /* BrickHacks */,
 				362BE1E5221886E300CD5561 /* Products */,
+				572732AD35E1102F80AD1BDC /* Pods */,
+				95A3C69B06ED03C43CE83A88 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +63,56 @@
 		362BE1E6221886E300CD5561 /* BrickHacks */ = {
 			isa = PBXGroup;
 			children = (
-				362BE1E7221886E300CD5561 /* AppDelegate.swift */,
-				362BE1E9221886E300CD5561 /* ViewController.swift */,
-				362BE1EB221886E300CD5561 /* Main.storyboard */,
+				362BE1FA2218BD5300CD5561 /* Model */,
+				362BE1F92218BD4800CD5561 /* View */,
+				362BE1FB2218C4CA00CD5561 /* Controller */,
 				362BE1EE221886E500CD5561 /* Assets.xcassets */,
 				362BE1F0221886E500CD5561 /* LaunchScreen.storyboard */,
 				362BE1F3221886E500CD5561 /* Info.plist */,
 			);
 			path = BrickHacks;
+			sourceTree = "<group>";
+		};
+		362BE1F92218BD4800CD5561 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				362BE1EB221886E300CD5561 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		362BE1FA2218BD5300CD5561 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				362BE1FC2218CC7D00CD5561 /* WegmansDataModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		362BE1FB2218C4CA00CD5561 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				362BE1E7221886E300CD5561 /* AppDelegate.swift */,
+				362BE1E9221886E300CD5561 /* RecipeViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		572732AD35E1102F80AD1BDC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B7B1E7C8CC77F41934B7EE51 /* Pods-BrickHacks.debug.xcconfig */,
+				9EB845DA2F98769EE1B2275A /* Pods-BrickHacks.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		95A3C69B06ED03C43CE83A88 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				446BD8D70A8E0FDC337ECA22 /* Pods_BrickHacks.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +122,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 362BE1F6221886E500CD5561 /* Build configuration list for PBXNativeTarget "BrickHacks" */;
 			buildPhases = (
+				39AFD0C7D85BA9DBFD2A180C /* [CP] Check Pods Manifest.lock */,
 				362BE1E0221886E300CD5561 /* Sources */,
 				362BE1E1221886E300CD5561 /* Frameworks */,
 				362BE1E2221886E300CD5561 /* Resources */,
+				28159283F803BCCEA76C8CA0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -130,12 +183,64 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		28159283F803BCCEA76C8CA0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BrickHacks/Pods-BrickHacks-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BrickHacks/Pods-BrickHacks-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		39AFD0C7D85BA9DBFD2A180C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BrickHacks-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		362BE1E0221886E300CD5561 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				362BE1EA221886E300CD5561 /* ViewController.swift in Sources */,
+				362BE1EA221886E300CD5561 /* RecipeViewController.swift in Sources */,
+				362BE1FD2218CC7D00CD5561 /* WegmansDataModel.swift in Sources */,
 				362BE1E8221886E300CD5561 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,6 +385,7 @@
 		};
 		362BE1F7221886E500CD5561 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B7B1E7C8CC77F41934B7EE51 /* Pods-BrickHacks.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -298,6 +404,7 @@
 		};
 		362BE1F8221886E500CD5561 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9EB845DA2F98769EE1B2275A /* Pods-BrickHacks.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
