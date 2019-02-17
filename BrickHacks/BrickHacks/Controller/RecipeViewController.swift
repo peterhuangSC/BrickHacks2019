@@ -11,8 +11,15 @@ import CoreLocation
 import Alamofire
 import SwiftyJSON
 
-class RecipeViewController: UIViewController, CLLocationManagerDelegate {
+class RecipeViewController: UIViewController, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
 
+    @IBOutlet weak var recipeTableView: UITableView!
+    
     final let wegmensURL = "https://api.wegmans.io" //change this I forgot what it was
     final let APIVersion = "2018-10-18"
     final let hrefGetMeals = "/meals/recipes"
@@ -24,15 +31,55 @@ class RecipeViewController: UIViewController, CLLocationManagerDelegate {
     
     //TO DO: link your IBOutlets here
     
+    
+    //globals
+    var ezRecipes : NSMutableDictionary = [:] //[Int : [String : Any]]()
+    var ezRecipeKeys = [Int]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        //test app
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation() //async background call
+        if let externalPath = Bundle.main.path(forResource: "EzMeals", ofType: "plist") {
+            generatePlist(from: externalPath)
+        }
+        
+        recipeTableView.reloadData()
+        //locations
+//        locationManager.delegate = self
+//        locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+//        locationManager.requestWhenInUseAuthorization()
+//        locationManager.startUpdatingLocation() //async background call
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
+    
+    
+    func generatePlist(from plistFilePath: String) {
+        guard let ezMealsDictionary: NSDictionary = NSDictionary(contentsOfFile: plistFilePath) else {
+            return
+        }
+        
+        var plist = [String : Int]()
+        for (key, value) in ezMealsDictionary {
+            if let index = key as? String {
+                if let value = value as? Int {
+                    plist[index] = value
+                }
+            }
+        }
+        
+        let params : [String : String] = ["api-version" : APIVersion, "subscription-key" : APP_ID]
+        
+        for ezMeal in plist {
+            let configURL = wegmensURL + hrefGetMeals + "/\(ezMeal.value)"
+            getRecipeData(url: configURL, parameters: params) //prints out things
+        }
+        //ezRecipes NSMutable is donezo
     }
     
     
@@ -44,26 +91,17 @@ class RecipeViewController: UIViewController, CLLocationManagerDelegate {
         Alamofire.request(url, method: .get, parameters: parameters).responseJSON {
             response in
             if response.result.isSuccess {
-                print("Success: Got the recipe data!")
+                //print("Success: Got the recipe data!")
                 let recipeJSON : JSON = JSON(response.result.value!)
                 print(recipeJSON)
-                //self.updateRecipeData(json: recipeJSON)
-                
-                /*
-                //remove after this is done
-                //plist to json
-                if let url = Bundle.main.url(forResource:"Meals", withExtension: "plist") {
-                    do {
-                        let data = try Data(contentsOf:url)
-                        let dict = try PropertyListSerialization.propertyList(from: data, options: [], format: nil) as! [String:Any]
-                        let jsonData = try JSONSerialization.data(withJSONObject: dict , options: .prettyPrinted)
-                        // jsondata  your required data
-                    } catch {
-                        print(error)
+                if let recipeStringJSON = recipeJSON.rawString() {
+                    if let ezRecipeItem = self.convertToDictionary(text: recipeStringJSON) {
+                        self.ezRecipes.setObject(ezRecipeItem, forKey: ezRecipeItem["id"] as! NSCopying)
+                        self.ezRecipeKeys.append(ezRecipeItem["id"] as! Int)
+                        print("ez recipes count \(self.ezRecipes.count)")
                     }
                 }
-                */
-                
+                //self.updateRecipeData(json: recipeJSON)
             } else {
                 print("Error: \(String(describing: response.result.error))")
                 //self.cityLabel.text = "Connection issues"
@@ -76,6 +114,16 @@ class RecipeViewController: UIViewController, CLLocationManagerDelegate {
     //MARK: - JSON Parsing
     /***************************************************************/
     
+    func convertToDictionary(text: String) -> [String: Any]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        return nil
+    }
     
     //Write the updateWeatherData method here:
 //    func updateWeatherData(json: JSON) {
@@ -132,8 +180,6 @@ class RecipeViewController: UIViewController, CLLocationManagerDelegate {
 
             let configURL = wegmensURL + hrefGetMeals
             //getWeatherData(url: WEATHER_URL, parameters: params)
-            getRecipeData(url: configURL, parameters: params)
-            //getRecipeData(url: wegmensURL)
         }
     }
     
@@ -142,7 +188,16 @@ class RecipeViewController: UIViewController, CLLocationManagerDelegate {
         print(error)
         //cityLabel.text = "Location Unavailable"
     }
-
-
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let recipeCell = tableView.dequeueReusableCell(withIdentifier: "recipe cell") ??
+            UITableViewCell(style: .default, reuseIdentifier: "recipe cell")
+        
+        let ezRecipeList = ezRecipes.allKeys
+        recipeCell.textLabel?.text = "yoyoyo" //ezRecipeList["\(ezRecipeKeys[indexPath.section])"]
+        
+        return recipeCell
+    }
 }
 

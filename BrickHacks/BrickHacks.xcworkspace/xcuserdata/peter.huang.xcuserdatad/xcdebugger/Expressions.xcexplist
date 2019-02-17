@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "RecipeViewController.viewWillAppear(_:):RecipeViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "ezRecipes">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in RecipeViewController.getRecipeData(url:parameters:):RecipeViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "url">
+            </PersistentString>
+            <PersistentString
+               value = "ezRecipes">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecipeViewController.getRecipeData(url:parameters:):RecipeViewController.swift">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

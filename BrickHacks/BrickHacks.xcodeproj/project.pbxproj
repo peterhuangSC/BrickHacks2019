@@ -14,6 +14,7 @@
 		362BE1F2221886E500CD5561 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 362BE1F0221886E500CD5561 /* LaunchScreen.storyboard */; };
 		362BE1FD2218CC7D00CD5561 /* WegmansDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362BE1FC2218CC7D00CD5561 /* WegmansDataModel.swift */; };
 		362BE2002219132F00CD5561 /* Meals.plist in Resources */ = {isa = PBXBuildFile; fileRef = 362BE1FF2219132F00CD5561 /* Meals.plist */; };
+		362BE20222192EFB00CD5561 /* EzMeals.plist in Resources */ = {isa = PBXBuildFile; fileRef = 362BE20122192EFB00CD5561 /* EzMeals.plist */; };
 		42D1D3A91C3DCD822862F2D5 /* Pods_BrickHacks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 446BD8D70A8E0FDC337ECA22 /* Pods_BrickHacks.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		362BE1F3221886E500CD5561 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		362BE1FC2218CC7D00CD5561 /* WegmansDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WegmansDataModel.swift; sourceTree = "<group>"; };
 		362BE1FF2219132F00CD5561 /* Meals.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Meals.plist; sourceTree = "<group>"; };
+		362BE20122192EFB00CD5561 /* EzMeals.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = EzMeals.plist; sourceTree = "<group>"; };
 		446BD8D70A8E0FDC337ECA22 /* Pods_BrickHacks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BrickHacks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EB845DA2F98769EE1B2275A /* Pods-BrickHacks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrickHacks.release.xcconfig"; path = "Pods/Target Support Files/Pods-BrickHacks/Pods-BrickHacks.release.xcconfig"; sourceTree = "<group>"; };
 		B7B1E7C8CC77F41934B7EE51 /* Pods-BrickHacks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrickHacks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BrickHacks/Pods-BrickHacks.debug.xcconfig"; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				362BE1FF2219132F00CD5561 /* Meals.plist */,
+				362BE20122192EFB00CD5561 /* EzMeals.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				362BE1F2221886E500CD5561 /* LaunchScreen.storyboard in Resources */,
+				362BE20222192EFB00CD5561 /* EzMeals.plist in Resources */,
 				362BE1EF221886E500CD5561 /* Assets.xcassets in Resources */,
 				362BE1ED221886E300CD5561 /* Main.storyboard in Resources */,
 				362BE2002219132F00CD5561 /* Meals.plist in Resources */,
