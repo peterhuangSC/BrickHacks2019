@@ -13,7 +13,7 @@ import SwiftyJSON
 
 class RecipeViewController: UIViewController, CLLocationManagerDelegate {
 
-    final let wegmensURL = "https://api.wegmens.io" //change this I forgot what it was
+    final let wegmensURL = "https://api.wegmans.io" //change this I forgot what it was
     final let APIVersion = "2018-10-18"
     final let hrefGetMeals = "/meals/recipes"
     
@@ -40,7 +40,7 @@ class RecipeViewController: UIViewController, CLLocationManagerDelegate {
     /***************************************************************/
     
     //Write the getWeatherData method here:
-    func getWeatherData(url: String, parameters: [String: String]) {
+    func getRecipeData(url: String, parameters: [String: String]) {
         Alamofire.request(url, method: .get, parameters: parameters).responseJSON {
             response in
             if response.result.isSuccess {
@@ -54,14 +54,6 @@ class RecipeViewController: UIViewController, CLLocationManagerDelegate {
             }
         }
     }
-    
-    
-    func getRecipeData(url: String, parameters: [String:String] ) {
-        
-    }
-    
-    
-    
     
     
     
