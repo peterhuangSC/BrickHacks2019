@@ -48,6 +48,22 @@ class RecipeViewController: UIViewController, CLLocationManagerDelegate {
                 let recipeJSON : JSON = JSON(response.result.value!)
                 print(recipeJSON)
                 //self.updateRecipeData(json: recipeJSON)
+                
+                /*
+                //remove after this is done
+                //plist to json
+                if let url = Bundle.main.url(forResource:"Meals", withExtension: "plist") {
+                    do {
+                        let data = try Data(contentsOf:url)
+                        let dict = try PropertyListSerialization.propertyList(from: data, options: [], format: nil) as! [String:Any]
+                        let jsonData = try JSONSerialization.data(withJSONObject: dict , options: .prettyPrinted)
+                        // jsondata  your required data
+                    } catch {
+                        print(error)
+                    }
+                }
+                */
+                
             } else {
                 print("Error: \(String(describing: response.result.error))")
                 //self.cityLabel.text = "Connection issues"
