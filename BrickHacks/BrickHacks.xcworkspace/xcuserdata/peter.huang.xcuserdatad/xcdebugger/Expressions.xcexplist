@@ -3,14 +3,6 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "RecipeViewController.viewWillAppear(_:):RecipeViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "ezRecipes">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "closure #1 in RecipeViewController.getRecipeData(url:parameters:):RecipeViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -23,6 +15,30 @@
       </ContextState>
       <ContextState
          contextName = "RecipeViewController.getRecipeData(url:parameters:):RecipeViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "RecipeViewController.tableView(_:cellForRowAt:):RecipeViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "wegmans.recipeTableData">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in WegmansDataModel.getRecipeData(url:parameters:):WegmansDataModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "recipeTableData">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecipeViewController.viewWillAppear(_:):RecipeViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "ezRecipes">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
    </ContextStates>
 </VariablesViewState>

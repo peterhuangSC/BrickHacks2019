@@ -13,11 +13,6 @@ import SwiftyJSON
 
 class RecipeViewController: UIViewController, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-
     @IBOutlet weak var recipeTableView: UITableView!
     
     final let wegmensURL = "https://api.wegmans.io" //change this I forgot what it was
@@ -31,6 +26,7 @@ class RecipeViewController: UIViewController, CLLocationManagerDelegate, UITable
     
     //TO DO: link your IBOutlets here
     
+    var wegmansModel = WegmansDataModel()
     
     //globals
     var ezRecipes : NSMutableDictionary = [:] //[Int : [String : Any]]()
@@ -40,16 +36,19 @@ class RecipeViewController: UIViewController, CLLocationManagerDelegate, UITable
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        if let externalPath = Bundle.main.path(forResource: "EzMeals", ofType: "plist") {
-            generatePlist(from: externalPath)
-        }
+//        if let externalPath = Bundle.main.path(forResource: "EzMeals", ofType: "plist") {
+//            generatePlist(from: externalPath)
+//        }
         
+        //navigationItem.title = "Ez-Recipes"
         recipeTableView.reloadData()
         //locations
 //        locationManager.delegate = self
 //        locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
 //        locationManager.requestWhenInUseAuthorization()
 //        locationManager.startUpdatingLocation() //async background call
+        self.recipeTableView.dataSource = self;
+        self.recipeTableView.delegate = self;
     }
     
     
@@ -59,71 +58,61 @@ class RecipeViewController: UIViewController, CLLocationManagerDelegate, UITable
     }
     
     
-    func generatePlist(from plistFilePath: String) {
-        guard let ezMealsDictionary: NSDictionary = NSDictionary(contentsOfFile: plistFilePath) else {
-            return
-        }
-        
-        var plist = [String : Int]()
-        for (key, value) in ezMealsDictionary {
-            if let index = key as? String {
-                if let value = value as? Int {
-                    plist[index] = value
-                }
-            }
-        }
-        
-        let params : [String : String] = ["api-version" : APIVersion, "subscription-key" : APP_ID]
-        
-        for ezMeal in plist {
-            let configURL = wegmensURL + hrefGetMeals + "/\(ezMeal.value)"
-            getRecipeData(url: configURL, parameters: params) //prints out things
-        }
-        //ezRecipes NSMutable is donezo
-    }
+//    func generatePlist(from plistFilePath: String) {
+//        guard let ezMealsDictionary: NSDictionary = NSDictionary(contentsOfFile: plistFilePath) else {
+//            return
+//        }
+//
+//        var plist = [String : Int]()
+//        for (key, value) in ezMealsDictionary {
+//            if let index = key as? String {
+//                if let value = value as? Int {
+//                    plist[index] = value
+//                }
+//            }
+//        }
+//
+//        let params : [String : String] = ["api-version" : APIVersion, "subscription-key" : APP_ID]
+//
+//        for ezMeal in plist {
+//            let configURL = wegmensURL + hrefGetMeals + "/\(ezMeal.value)"
+//            getRecipeData(url: configURL, parameters: params) //prints out things
+//        }
+//        //ezRecipes NSMutable is donezo
+//    }
     
     
     //MARK: - Networking
     /***************************************************************/
     
-    //Write the getWeatherData method here:
-    func getRecipeData(url: String, parameters: [String: String]) {
-        Alamofire.request(url, method: .get, parameters: parameters).responseJSON {
-            response in
-            if response.result.isSuccess {
-                //print("Success: Got the recipe data!")
-                let recipeJSON : JSON = JSON(response.result.value!)
-                print(recipeJSON)
-                if let recipeStringJSON = recipeJSON.rawString() {
-                    if let ezRecipeItem = self.convertToDictionary(text: recipeStringJSON) {
-                        self.ezRecipes.setObject(ezRecipeItem, forKey: ezRecipeItem["id"] as! NSCopying)
-                        self.ezRecipeKeys.append(ezRecipeItem["id"] as! Int)
-                        print("ez recipes count \(self.ezRecipes.count)")
-                    }
-                }
-                //self.updateRecipeData(json: recipeJSON)
-            } else {
-                print("Error: \(String(describing: response.result.error))")
-                //self.cityLabel.text = "Connection issues"
-            }
-        }
-    }
-    
+//    //Write the getWeatherData method here:
+//    func getRecipeData(url: String, parameters: [String: String]) {
+//        Alamofire.request(url, method: .get, parameters: parameters).responseJSON {
+//            response in
+//            if response.result.isSuccess {
+//                //print("Success: Got the recipe data!")
+//                let recipeJSON : JSON = JSON(response.result.value!)
+//                print(recipeJSON)
+//                if let recipeStringJSON = recipeJSON.rawString() {
+//                    if let ezRecipeItem = self.convertToDictionary(text: recipeStringJSON) {
+//                        self.ezRecipes.setObject(ezRecipeItem, forKey: ezRecipeItem["id"] as! NSCopying)
+//                        self.ezRecipeKeys.append(ezRecipeItem["id"] as! Int)
+//                        print("ez recipes count \(self.ezRecipes.count)")
+//                    }
+//                }
+//                //self.updateRecipeData(json: recipeJSON)
+//            } else {
+//                print("Error: \(String(describing: response.result.error))")
+//                //self.cityLabel.text = "Connection issues"
+//            }
+//        }
+//    }
+//
     
     
     //MARK: - JSON Parsing
     /***************************************************************/
     
-    func convertToDictionary(text: String) -> [String: Any]? {
-        if let data = text.data(using: .utf8) {
-            do {
-                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-        return nil
-    }
     
     //Write the updateWeatherData method here:
 //    func updateWeatherData(json: JSON) {
@@ -140,9 +129,6 @@ class RecipeViewController: UIViewController, CLLocationManagerDelegate, UITable
 //
 //    }
     
-    
-    
-    
     //MARK: - UI Updates
     /***************************************************************/
     
@@ -154,35 +140,9 @@ class RecipeViewController: UIViewController, CLLocationManagerDelegate, UITable
 //        weatherIcon.image = UIImage(named: weatherDataModel.weatherIconName)
 //    }
     
-    
-    
-    
-    
     //MARK: - Location Manager Delegate Methods
     /***************************************************************/
-    
-    
-    //Write the didUpdateLocations method here:
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations[locations.count - 1]
-        //stop fetching location as soon as it's valid, prevents battery consumption
-        if location.horizontalAccuracy > 0 {
-            locationManager.stopUpdatingLocation()
-            locationManager.delegate = nil //avoid multiple data repeats
-            print("longitude = \(location.coordinate.longitude), latitude = \(location.coordinate.latitude)")
-
-            //let latitude = String(location.coordinate.latitude)
-            //let longitude = String(location.coordinate.longitude)
-
-            //id
-            //let params : [String : String] = ["lat" : latitude, "lon" : longitude, "appid" : APP_ID]
-            let params : [String : String] = ["api-version" : APIVersion, "subscription-key" : APP_ID]
-
-            let configURL = wegmensURL + hrefGetMeals
-            //getWeatherData(url: WEATHER_URL, parameters: params)
-        }
-    }
-    
+  
     //Write the didFailWithError method here:
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
@@ -194,10 +154,23 @@ class RecipeViewController: UIViewController, CLLocationManagerDelegate, UITable
         let recipeCell = tableView.dequeueReusableCell(withIdentifier: "recipe cell") ??
             UITableViewCell(style: .default, reuseIdentifier: "recipe cell")
         
-        let ezRecipeList = ezRecipes.allKeys
-        recipeCell.textLabel?.text = "yoyoyo" //ezRecipeList["\(ezRecipeKeys[indexPath.section])"]
+        //let ezRecipeList = ezRecipes.allKeys
+        //recipeCell.textLabel?.text = "yoyoyo" //ezRecipeList["\(ezRecipeKeys[indexPath.section])"]
+        recipeCell.textLabel?.text = "template text"
+        //recipeCell.textLabel?.text = wegmansModel.recipeTableData[0].recipeName
+        recipeCell.textLabel?.font = UIFont.preferredFont(forTextStyle: .body)
         
         return recipeCell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        if licenseFacilitator.getLicenseTableData()[section].opened == true {
+//            return licenseFacilitator.getLicenseTableData()[section].sectionData.count + 1 //1 accounts for the header row
+//        } else {
+//            return 1
+//        }
+        return 1
+        //return wegmansModel.recipeTableData.count
     }
 }
 
