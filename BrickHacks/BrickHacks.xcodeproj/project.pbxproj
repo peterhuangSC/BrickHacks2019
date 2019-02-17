@@ -47,6 +47,7 @@
 			children = (
 				362BE1E6221886E300CD5561 /* BrickHacks */,
 				362BE1E5221886E300CD5561 /* Products */,
+				362BE1FE2218D42100CD5561 /* Supporting Files */,
 				572732AD35E1102F80AD1BDC /* Pods */,
 				95A3C69B06ED03C43CE83A88 /* Frameworks */,
 			);
@@ -68,7 +69,6 @@
 				362BE1FB2218C4CA00CD5561 /* Controller */,
 				362BE1EE221886E500CD5561 /* Assets.xcassets */,
 				362BE1F0221886E500CD5561 /* LaunchScreen.storyboard */,
-				362BE1F3221886E500CD5561 /* Info.plist */,
 			);
 			path = BrickHacks;
 			sourceTree = "<group>";
@@ -96,6 +96,14 @@
 				362BE1E9221886E300CD5561 /* RecipeViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		362BE1FE2218D42100CD5561 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				362BE1F3221886E500CD5561 /* Info.plist */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		572732AD35E1102F80AD1BDC /* Pods */ = {
